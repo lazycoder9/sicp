@@ -1,0 +1,13 @@
+#lang racket
+
+(define (accumulate op init items)
+  (if (null? items)
+      init
+      (op (car items)
+          (accumulate op init (cdr items)))))
+
+(define (horner-eval x coefficient-sequence)
+  (accumulate (lambda (this-coeff higher-terms) (+ this-coeff
+                                                   (* x higher-terms)))
+              0
+              coefficient-sequence))
