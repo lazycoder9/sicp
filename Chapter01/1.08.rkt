@@ -18,9 +18,6 @@
 (define (improve x guess)
   (/ (+ (/ x (square guess)) (* 2 guess)) 3))
 
-(define (average a b)
-  (/ (+ a b) 2))
-
 ;TEST
 
 (check-equal? (cubert 27) 3.0)
