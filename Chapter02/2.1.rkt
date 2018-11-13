@@ -39,11 +39,11 @@
   (make-rat (* (numer x) (denom y))
             (* (denom x) (numer y))))
 
+
 ;TEST
 (define a (make-rat 3 -6))
 (define b (make-rat 4 10))
+(define c (make-rat -1 5))
 
-(check-eq? (numer (mul-rat a b)) -1)
-(check-eq? (denom (mul-rat a b)) 5)
-
+(check-eq? (equal-rat? (mul-rat a b) c) #true)
 
