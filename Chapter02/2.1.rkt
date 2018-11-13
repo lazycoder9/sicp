@@ -1,22 +1,16 @@
 #lang racket
 
-(provide make-rat)
-(provide add-rat)
-(provide sub-rat)
-(provide mul-rat)
-(provide print-rat)
+(require rackunit)
 
-(define (gcd a b)
-  (if (= b 0)
-      a
-      (gcd b (remainder a b))))
+(define (abs x)
+  (* x (if (< x 0) -1 1)))
 
 (define (make-rat n d)
   (let ((g (gcd n d)))
-    (cond ((or (and (< d 0) (> n 0)) (and (< n 0) (> d 0)))
-           (cons (* (/ n g) (- 1)) (* (/ d g) (- 1))))
-          (else
-           (cons (/ n g) (/ d g))))))
+    (let ((n (/ n g))
+          (d (/ d g)))
+      (cons (if (negative? d) (* -1 n) n)
+            (abs d)))))
 
 (define (numer x) (car x))
 
@@ -44,4 +38,12 @@
 (define (div-rat x y)
   (make-rat (* (numer x) (denom y))
             (* (denom x) (numer y))))
+
+;TEST
+(define a (make-rat 3 -6))
+(define b (make-rat 4 10))
+
+(check-eq? (numer (mul-rat a b)) -1)
+(check-eq? (denom (mul-rat a b)) 5)
+
 
