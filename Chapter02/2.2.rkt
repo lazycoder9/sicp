@@ -1,6 +1,9 @@
 #lang racket
 
 (require rackunit)
+(provide make-point)
+(provide x-point)
+(provide y-point)
 
 (define (make-point x y) (cons x y))
 
