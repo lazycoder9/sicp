@@ -1,5 +1,7 @@
 #lang racket
 
+(require rackunit)
+
 (define (make-interval a b)
   (cons a b))
 
@@ -26,6 +28,30 @@
                 (make-interval (/ 1.0 (upper-bound y))
                                (/ 1.0 (lower-bound y)))))
 
-(define (sub-interval x y) 
-  (make-interval (- (lower-bound x) (upper-bound y)) 
+(define (sub-interval x y)
+  (make-interval (- (lower-bound x) (upper-bound y))
                  (- (upper-bound x) (lower-bound y))))
+
+;TEST
+(define x (make-interval 4 6))
+(define y (make-interval 2 4))
+
+(define sum (add-interval x y))
+
+(check-eq? (lower-bound sum) 6)
+(check-eq? (upper-bound sum) 10)
+
+(define mul (mul-interval x y))
+
+(check-eq? (lower-bound mul) 8)
+(check-eq? (upper-bound mul) 24)
+
+(define div (div-interval x y))
+
+(check-equal? (lower-bound div) 1.0)
+(check-equal? (upper-bound div) 3.0)
+
+(define sub (sub-interval x y))
+
+(check-eq? (lower-bound sub) 0)
+(check-eq? (upper-bound sub) 4)
