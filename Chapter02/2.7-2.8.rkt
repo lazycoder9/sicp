@@ -1,6 +1,13 @@
 #lang racket
 
 (require rackunit)
+(provide make-interval)
+(provide lower-bound)
+(provide upper-bound)
+(provide add-interval)
+(provide mul-interval)
+(provide div-interval)
+(provide sub-interval)
 
 (define (make-interval a b)
   (cons a b))
