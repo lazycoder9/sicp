@@ -1,12 +1,6 @@
 #lang racket
 (require rackunit)
-
-(define (reverse l)
-  (define (iter rev-list list)
-    (if (null? list)
-        rev-list
-        (iter (cons (car list) rev-list) (cdr list))))
-  (iter (list ) l))
+(require "2.17-18.rkt")
 
 (define (same-parity x . n)
   (let ((parity (remainder x 2)))

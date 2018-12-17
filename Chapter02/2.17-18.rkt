@@ -1,6 +1,8 @@
 #lang racket
 (require rackunit)
 
+(provide reverse)
+
 (define (list-ref items n)
   (if (= n 0)
       (car items)
