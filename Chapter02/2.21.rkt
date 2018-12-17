@@ -1,34 +1,18 @@
 #lang racket
-
-(define (square x) (* x x))
-
-(define (map proc items)
-  (if (null? items)
-      '()
-      (cons (proc (car items))
-            (map proc (cdr items)))))
+(require rackunit)
 
 (define (square-list items)
   (if (null? items)
       '()
-      (cons (square (car items))
+      (cons ((lambda (x) (* x x)) (car items))
             (square-list (cdr items)))))
 
 (define (square-list-map items)
-  (map square items))
+  (map (lambda (x) (* x x)) items))
 
-(square-list-map (list 1 2 3 4 5))
+;TEST
+(define l (list 1 2 3 4 5))
+(define expected (list 1 4 9 16 25))
+(check-equal? expected (square-list l))
+(check-equal? expected (square-list-map l))
 
-
-
-
-
-
-
-
-
-
-
-
-
-  
