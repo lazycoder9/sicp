@@ -1,4 +1,5 @@
 #lang racket
+(require rackunit)
 
 (define (list-ref items n)
   (if (= n 0)
@@ -27,13 +28,7 @@
         (iter (cons (car list) rev-list) (cdr list))))
   (iter (list ) l))
 
+;TEST
 (define a (list 23 72 149 34))
-
-
-
-
-
-
-
-
-  
+(check-equal? (list 34) (last-pair a))
+(check-equal? (list 34 149 72 23) (reverse a))

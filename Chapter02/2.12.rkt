@@ -2,8 +2,9 @@
 
 (require rackunit)
 (require "2.7-2.8.rkt")
+(provide make-center-percent)
 
-(define (make-cnter-width c w)
+(define (make-center-width c w)
   (make-interval (- c w) (+ c w)))
 
 (define (center i)
@@ -13,7 +14,7 @@
   (/ (- (upper-bound i) (lower-bound i)) 2))
 
 (define (make-center-percent c p)
-  (let ((percent (/ p 100)))
+  (let ((percent (/ p 100.0)))
         (make-interval (* c (- 1 percent))
                        (* c (+ 1 percent)))))
 
@@ -23,5 +24,5 @@
 ;TEST
 (define i (make-center-percent 10 10))
 
-(check-eq? (lower-bound i) 9)
-(check-eq? (upper-bound i) 11)
+(check-equal? (lower-bound i) 9.0)
+(check-equal? (upper-bound i) 11.0)
