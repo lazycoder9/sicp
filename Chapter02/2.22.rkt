@@ -1,42 +1,15 @@
 #lang racket
-
-(define (square x) (* x x))
-
-(define (map proc items)
-  (if (null? items)
-      '()
-      (cons (proc (car items))
-            (map proc (cdr items)))))
+(require rackunit)
+(require "2.17-18.rkt")
 
 (define (square-list items)
-  (if (null? items)
-      '()
-      (cons (square (car items))
-            (square-list (cdr items)))))
+  (define (iter things answer)
+    (if (null? things)
+      answer
+      (iter (cdr things)
+            (append answer
+                  (list ((lambda (x) (* x x)) (car things)))))))
+  (iter items '()))
 
-(define (square-list-map items)
-  (map square items))
-
-(define (for-each proc items)
-  (cond ((null? items)
-         '())
-        (else
-         (proc (car items))
-         (for-each proc (cdr items)))))
-      
-
-(square-list-map (list 1 2 3 4 5))
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
+;TEST
+(check-equal? (list 1 4 9 16 25) (square-list (list 1 2 3 4 5)))

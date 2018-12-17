@@ -2,6 +2,7 @@
 (require rackunit)
 
 (provide reverse)
+(provide append)
 
 (define (list-ref items n)
   (if (= n 0)
