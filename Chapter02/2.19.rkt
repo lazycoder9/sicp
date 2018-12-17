@@ -1,4 +1,5 @@
 #lang racket
+(require rackunit)
 
 (define (cc amount coin-values)
   (cond ((= amount 0) 1)
@@ -19,15 +20,6 @@
 (define (except-first-denomination coin-values)
   (cdr coin-values))
 
+;TEST
 (define us-coins (list 50 25 10 5 1))
-
-
-
-
-
-
-
-
-
-
-  
+(check-eq? 292 (cc 100 us-coins))
