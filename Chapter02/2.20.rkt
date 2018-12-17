@@ -1,4 +1,6 @@
 #lang racket
+(require rackunit)
+
 (define (reverse l)
   (define (iter rev-list list)
     (if (null? list)
@@ -17,18 +19,5 @@
              (iter result (cdr oldlist)))))
     (iter (list x) n)))
 
-(same-parity 2 3 4 5 6)
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
+;TEST
+(check-equal? (list 2 4 6) (same-parity 2 3 4 5 6))
