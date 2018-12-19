@@ -1,4 +1,5 @@
 #lang racket
+(require rackunit)
 
 (define (accumulate op init items)
   (if (null? items)
@@ -11,3 +12,6 @@
                                                    (* x higher-terms)))
               0
               coefficient-sequence))
+
+;TEST
+(check-equal? (horner-eval 2 (list 1 3 0 5 0 1)) 79)
