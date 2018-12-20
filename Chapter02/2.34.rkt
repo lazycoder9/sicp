@@ -1,11 +1,6 @@
 #lang racket
 (require rackunit)
-
-(define (accumulate op init items)
-  (if (null? items)
-      init
-      (op (car items)
-          (accumulate op init (cdr items)))))
+(require "2.33.rkt")
 
 (define (horner-eval x coefficient-sequence)
   (accumulate (lambda (this-coeff higher-terms) (+ this-coeff

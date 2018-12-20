@@ -1,5 +1,6 @@
 #lang racket
 (require rackunit)
+(provide accumulate)
 
 (define (accumulate op init items)
   (if (null? items)
