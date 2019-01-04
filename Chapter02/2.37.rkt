@@ -1,10 +1,6 @@
 #lang racket
-
-(define (accumulate op init items)
-  (if (null? items)
-      init
-      (op (car items)
-          (accumulate op init (cdr items)))))
+(require rackunit)
+(require "2.33.rkt")
 
 (define (accumulate-n op init seqs)
   (if (null? (car seqs))
