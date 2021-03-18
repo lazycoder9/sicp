@@ -1,10 +1,7 @@
 #lang racket
 
-(define (accumulate op init items)
-  (if (null? items)
-      init
-      (op (car items)
-          (accumulate op init (cdr items)))))
+(require (only-in "../utils/list.rkt"
+                  accumulate))
 
 (define (enumerate-interval low high)
   (if (> low high)

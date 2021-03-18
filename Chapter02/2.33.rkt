@@ -1,12 +1,7 @@
 #lang racket
 (require rackunit)
-(provide accumulate)
-
-(define (accumulate op init items)
-  (if (null? items)
-      init
-      (op (car items)
-          (accumulate op init (cdr items)))))
+(require (only-in "../utils/list.rkt"
+                  accumulate))
 
 (define (map p sequence)
   (accumulate (lambda (x y) (cons (p x) y)) '() sequence))
