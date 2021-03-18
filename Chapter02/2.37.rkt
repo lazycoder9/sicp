@@ -1,6 +1,8 @@
 #lang racket
 (require rackunit)
-(require "2.33.rkt")
+
+(require (only-in "../utils/list.rkt"
+                  accumulate))
 
 (define (accumulate-n op init seqs)
   (if (null? (car seqs))
@@ -22,4 +24,14 @@
     (map (lambda (x) (matrix-*-vector cols x)) m)))
 
 (define m (list (list 1 2 3) (list 4 5 6) (list 7 8 9)))
-(define v (list 5 6))
+(define v (list 5 6 7))
+
+(check-equal? (dot-product v (car m)) 38)
+(check-equal? (dot-product (car m) (cadr m)) 32)
+
+(check-equal? (matrix-*-vector m v) '(38 92 146))
+
+(check-equal? (transpose m) '((1 4 7) (2 5 8) (3 6 9)))
+
+(check-equal? (matrix-*-matrix m m) '((30 36 42) (66 81 96) (102 126 150)))
+(check-equal? (matrix-*-matrix m (transpose m)) '((14 32 50) (32 77 122) (50 122 194)))
