@@ -39,5 +39,3 @@
   (queens-safe? (- k 1) (cdr positions)))
 
 (check-equal? (queens 4) '((3 1 4 2) (2 4 1 3)))
-
-
